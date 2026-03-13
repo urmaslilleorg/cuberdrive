@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-space-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  --background: #08080a;
+  --foreground: #f0efe9;
+  --card: #13131a;
+  --card-foreground: #f0efe9;
+  --primary: #e94560;
+  --primary-foreground: #f0efe9;
+  --secondary: #13131a;
+  --secondary-foreground: #f0efe9;
+  --muted: #13131a;
+  --muted-foreground: #6b6b74;
+  --accent: #e94560;
+  --accent-foreground: #f0efe9;
+  --border: #2a2a30;
+  --input: #2a2a30;
+  --ring: #e94560;
+  --radius: 12px;
+  --cuber-bg: #08080a;
+  --cuber-surface: #13131a;
+  --cuber-text: #f0efe9;
+  --cuber-text-muted: #6b6b74;
+  --cuber-accent: #e94560;
+  --cuber-accent-dim: rgba(233, 69, 96, 0.12);
+  --cuber-border: #2a2a30;
+  --cuber-success: #00c9a7;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--cuber-bg);
+  color: var(--cuber-text);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cuber-accent), transparent);
+  opacity: 0.4;
+  z-index: 100;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cuber-bg); }
+::-webkit-scrollbar-thumb { background: var(--cuber-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cuber-accent); }
+::selection { background: var(--cuber-accent); color: var(--cuber-text); }
+
+.section-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.section-fade.visible { opacity: 1; transform: translateY(0); }
+.section-fade .stagger-1 { transition-delay: 0ms; }
+.section-fade .stagger-2 { transition-delay: 100ms; }
+.section-fade .stagger-3 { transition-delay: 200ms; }
+.section-fade .stagger-4 { transition-delay: 300ms; }
+.section-fade .stagger-5 { transition-delay: 400ms; }
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+.logo-glow { animation: breathe 8s ease-in-out infinite; }
+
+.corner-mark {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--cuber-text-muted);
+  border-style: solid;
+  opacity: 0.4;
+}
+.corner-mark-tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.corner-mark-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.corner-mark-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.corner-mark-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.streaming-cursor::after {
+  content: '▋';
+  animation: blink 1s step-end infinite;
+  color: var(--cuber-accent);
+  margin-left: 2px;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
