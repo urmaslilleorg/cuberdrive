@@ -16,11 +16,11 @@ export function ChatMessage({ role, content, isStreaming = false }: ChatMessageP
     return (
       <div className="flex justify-end mb-3">
         <div
-          className="max-w-[80%] rounded-xl px-4 py-3 text-sm leading-relaxed"
+          className="max-w-[80%] rounded-lg px-4 py-3 text-sm leading-relaxed"
           style={{
-            background: '#e94560',
-            color: '#f0efe9',
-            fontFamily: 'var(--font-outfit)',
+            background: '#F0F0EA',
+            color: '#1A1A1A',
+            fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
           }}
         >
           {content}
@@ -30,7 +30,6 @@ export function ChatMessage({ role, content, isStreaming = false }: ChatMessageP
   }
 
   if (isBrief) {
-    // Split content at the brief marker
     const briefIndex = content.indexOf('## 📋 CUBER BRIEF');
     const briefIndex2 = content.indexOf('## CUBER BRIEF');
     const splitAt = briefIndex !== -1 ? briefIndex : briefIndex2;
@@ -43,11 +42,10 @@ export function ChatMessage({ role, content, isStreaming = false }: ChatMessageP
         <div className="max-w-[90%] w-full">
           {beforeBrief && (
             <div
-              className="rounded-xl px-4 py-3 text-sm leading-relaxed mb-2"
+              className="px-4 py-3 text-sm leading-relaxed mb-2"
               style={{
-                background: '#13131a',
-                color: '#f0efe9',
-                fontFamily: 'var(--font-outfit)',
+                color: '#1A1A1A',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
               }}
             >
               {beforeBrief}
@@ -63,14 +61,13 @@ export function ChatMessage({ role, content, isStreaming = false }: ChatMessageP
   return (
     <div className="flex justify-start mb-3">
       <div
-        className={`max-w-[85%] rounded-xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${isStreaming ? 'streaming-cursor' : ''}`}
+        className={`max-w-[85%] px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${isStreaming ? 'streaming-cursor' : ''}`}
         style={{
-          background: '#13131a',
-          color: '#f0efe9',
-          fontFamily: 'var(--font-outfit)',
+          color: '#1A1A1A',
+          fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
         }}
       >
-        {content || <span style={{ color: '#6b6b74' }}>Thinking...</span>}
+        {content || <span style={{ color: '#9B9B9B' }}>Thinking...</span>}
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ export function PhaseTimeline() {
       {/* Vertical line */}
       <div
         className="absolute left-4 top-0 bottom-0 w-px"
-        style={{ background: '#2a2a30' }}
+        style={{ background: '#E5E5E0' }}
       />
 
       <div className="space-y-4">
@@ -26,10 +26,10 @@ export function PhaseTimeline() {
           >
             {/* Dot */}
             <div
-              className="absolute left-2.5 top-2 w-3 h-3 rounded-full flex-shrink-0"
+              className="absolute top-2 w-3 h-3 rounded-full flex-shrink-0"
               style={{
-                background: phase.current ? '#e94560' : '#2a2a30',
-                border: phase.current ? '2px solid #e94560' : '2px solid #2a2a30',
+                background: phase.current ? '#D97757' : '#E5E5E0',
+                border: phase.current ? '2px solid #D97757' : '2px solid #E5E5E0',
                 transform: 'translateX(-50%)',
                 left: '16px',
               }}
@@ -39,27 +39,27 @@ export function PhaseTimeline() {
             <div
               className="flex-1 rounded-xl p-4 transition-all duration-200"
               style={{
-                background: phase.current ? 'rgba(233, 69, 96, 0.08)' : '#13131a',
-                border: `1px solid ${phase.current ? 'rgba(233, 69, 96, 0.3)' : '#2a2a30'}`,
+                background: phase.current ? 'rgba(217, 119, 87, 0.05)' : '#FFFFFF',
+                border: `1px solid ${phase.current ? 'rgba(217, 119, 87, 0.25)' : '#E5E5E0'}`,
               }}
             >
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <span
-                  className="text-xs font-mono font-bold"
-                  style={{ color: phase.current ? '#e94560' : '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+                  className="text-xs font-medium"
+                  style={{ color: phase.current ? '#D97757' : '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   {phase.phase}
                 </span>
                 <span
                   className="text-xs"
-                  style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+                  style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   {phase.week}
                 </span>
                 {phase.current && (
                   <span
                     className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ background: 'rgba(233, 69, 96, 0.2)', color: '#e94560' }}
+                    style={{ background: 'rgba(217, 119, 87, 0.1)', color: '#D97757' }}
                   >
                     Current
                   </span>
@@ -67,7 +67,7 @@ export function PhaseTimeline() {
               </div>
               <p
                 className="text-sm font-medium"
-                style={{ color: '#f0efe9', fontFamily: 'var(--font-outfit)' }}
+                style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
               >
                 {phase.title}
               </p>
@@ -78,7 +78,7 @@ export function PhaseTimeline() {
 
       <p
         className="mt-8 text-sm text-center"
-        style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+        style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
       >
         ~7 weeks from kickoff to working prototype. Each phase = one Manus session. Atomic. Verifiable.
       </p>

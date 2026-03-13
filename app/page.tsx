@@ -10,28 +10,8 @@ export default function LandingPage() {
   return (
     <main
       className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden"
-      style={{ background: '#08080a' }}
+      style={{ background: '#FAFAF8' }}
     >
-      {/* Corner marks */}
-      <div className="corner-mark corner-mark-tl" style={{ top: '24px', left: '24px' }} />
-      <div className="corner-mark corner-mark-tr" style={{ top: '24px', right: '24px' }} />
-      <div className="corner-mark corner-mark-bl" style={{ bottom: '24px', left: '24px' }} />
-      <div className="corner-mark corner-mark-br" style={{ bottom: '24px', right: '24px' }} />
-
-      {/* Radial glow behind logo */}
-      <div
-        className="logo-glow absolute pointer-events-none"
-        style={{
-          width: '600px',
-          height: '600px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(233,69,96,0.08) 0%, transparent 70%)',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-
       {/* Content container */}
       <div
         className="relative z-10 flex flex-col items-center w-full px-6"
@@ -41,8 +21,8 @@ export default function LandingPage() {
         <div
           className="transition-all duration-500 ease-out"
           style={{
-            transform: chatActive ? 'scale(0.4) translateY(-20px)' : 'scale(1)',
-            marginBottom: chatActive ? '-20px' : '0',
+            transform: chatActive ? 'scale(0.5) translateY(-16px)' : 'scale(1)',
+            marginBottom: chatActive ? '-16px' : '0',
           }}
         >
           <Logo size="hero" linkTo="/concept" />
@@ -57,28 +37,20 @@ export default function LandingPage() {
           }}
         >
           <div className="flex flex-col items-center">
-            <div
-              style={{
-                width: '48px',
-                height: '1px',
-                background: '#e94560',
-                margin: '16px 0',
-              }}
-            />
             <p
-              className="text-center tracking-widest"
+              className="text-center mt-4"
               style={{
-                color: '#f0efe9',
-                fontFamily: 'var(--font-outfit)',
-                fontWeight: 200,
-                fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-                letterSpacing: '0.15em',
+                color: '#6B6B6B',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+                fontSize: 'clamp(0.875rem, 2vw, 1rem)',
+                letterSpacing: '0',
               }}
             >
               Creative talent{' '}
-              <span style={{ color: '#e94560' }}>·</span>{' '}
+              <span style={{ color: '#9B9B9B' }}>·</span>{' '}
               AI coworkers{' '}
-              <span style={{ color: '#e94560' }}>·</span>{' '}
+              <span style={{ color: '#9B9B9B' }}>·</span>{' '}
               One ride
             </p>
           </div>

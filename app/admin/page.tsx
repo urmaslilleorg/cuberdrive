@@ -148,24 +148,31 @@ export default function AdminPage() {
       minute: '2-digit',
     });
 
+  const inputStyle = {
+    background: '#FAFAF8',
+    border: '1px solid #E5E5E0',
+    color: '#1A1A1A',
+    fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+  };
+
   if (!authenticated) {
     return (
       <div
         className="min-h-screen flex items-center justify-center px-6"
-        style={{ background: '#08080a' }}
+        style={{ background: '#FAFAF8' }}
       >
         <div
           className="w-full max-w-sm rounded-2xl p-8"
-          style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+          style={{ background: '#FFFFFF', border: '1px solid #E5E5E0', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}
         >
           <Logo size="small" linkTo="/" />
           <h1
             className="text-xl font-semibold mt-4 mb-1"
-            style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+            style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             Admin Panel
           </h1>
-          <p className="text-sm mb-6" style={{ color: '#6b6b74' }}>
+          <p className="text-sm mb-6" style={{ color: '#9B9B9B' }}>
             Enter the admin password to continue.
           </p>
           <form onSubmit={handleAuth} className="space-y-3">
@@ -175,22 +182,17 @@ export default function AdminPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Admin password"
               className="w-full px-3 py-2.5 rounded-lg text-sm outline-none"
-              style={{
-                background: '#08080a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-                fontFamily: 'var(--font-outfit)',
-              }}
+              style={inputStyle}
             />
             {authError && (
-              <p className="text-sm" style={{ color: '#e94560' }}>
+              <p className="text-sm" style={{ color: '#D97757' }}>
                 {authError}
               </p>
             )}
             <button
               type="submit"
-              className="w-full py-2.5 rounded-lg text-sm font-medium"
-              style={{ background: '#e94560', color: '#f0efe9' }}
+              className="w-full py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
+              style={{ background: '#D97757', color: '#FFFFFF', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
             >
               Enter
             </button>
@@ -201,18 +203,21 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ background: '#08080a', minHeight: '100vh' }}>
+    <div style={{ background: '#FAFAF8', minHeight: '100vh' }}>
       {/* Header */}
       <div
         className="sticky top-0 z-10 flex items-center justify-between px-6 py-3"
-        style={{ background: '#08080a', borderBottom: '1px solid #2a2a30' }}
+        style={{ background: '#FAFAF8', borderBottom: '1px solid #E5E5E0' }}
       >
         <Logo size="small" linkTo="/" />
         <div className="flex items-center gap-3">
+          {loading && (
+            <span className="text-xs" style={{ color: '#9B9B9B' }}>Loading...</span>
+          )}
           <button
             onClick={handleExport}
-            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors hover:bg-[#2a2a30]"
-            style={{ color: '#6b6b74', border: '1px solid #2a2a30' }}
+            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors hover:bg-[#F0F0EA]"
+            style={{ color: '#6B6B6B', border: '1px solid #E5E5E0' }}
           >
             <Download size={12} />
             Export JSON
@@ -222,8 +227,8 @@ export default function AdminPage() {
               localStorage.removeItem(ADMIN_KEY);
               setAuthenticated(false);
             }}
-            className="text-xs"
-            style={{ color: '#6b6b74' }}
+            className="text-xs transition-colors hover:text-[#1A1A1A]"
+            style={{ color: '#9B9B9B' }}
           >
             Sign out
           </button>
@@ -235,16 +240,13 @@ export default function AdminPage() {
         <section>
           <h2
             className="text-xl font-semibold mb-4"
-            style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+            style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             Co-founders
           </h2>
 
           {/* Add form */}
-          <form
-            onSubmit={handleAddCofounder}
-            className="flex gap-2 mb-4 flex-wrap"
-          >
+          <form onSubmit={handleAddCofounder} className="flex gap-2 mb-4 flex-wrap">
             <input
               type="text"
               value={newName}
@@ -252,11 +254,7 @@ export default function AdminPage() {
               placeholder="Name"
               required
               className="flex-1 min-w-[140px] px-3 py-2 rounded-lg text-sm outline-none"
-              style={{
-                background: '#13131a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-              }}
+              style={inputStyle}
             />
             <input
               type="email"
@@ -265,40 +263,33 @@ export default function AdminPage() {
               placeholder="Email"
               required
               className="flex-1 min-w-[200px] px-3 py-2 rounded-lg text-sm outline-none"
-              style={{
-                background: '#13131a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-              }}
+              style={inputStyle}
             />
             <button
               type="submit"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium"
-              style={{ background: '#e94560', color: '#f0efe9' }}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:opacity-90"
+              style={{ background: '#D97757', color: '#FFFFFF', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
             >
               <Plus size={14} />
               Add
             </button>
           </form>
           {addError && (
-            <p className="text-sm mb-3" style={{ color: '#e94560' }}>
+            <p className="text-sm mb-3" style={{ color: '#D97757' }}>
               {addError}
             </p>
           )}
 
           {/* Table */}
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{ border: '1px solid #2a2a30' }}
-          >
+          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #E5E5E0' }}>
             <table className="w-full text-sm">
               <thead>
-                <tr style={{ background: '#13131a', borderBottom: '1px solid #2a2a30' }}>
+                <tr style={{ background: '#F5F5F0', borderBottom: '1px solid #E5E5E0' }}>
                   {['Name', 'Email', 'Status', 'Added', ''].map((h) => (
                     <th
                       key={h}
                       className="text-left px-4 py-3 text-xs font-medium"
-                      style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+                      style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                     >
                       {h}
                     </th>
@@ -318,13 +309,13 @@ export default function AdminPage() {
                   return (
                     <tr
                       key={cf.id}
-                      style={{ borderBottom: '1px solid #2a2a30' }}
-                      className="hover:bg-[rgba(255,255,255,0.02)]"
+                      style={{ borderBottom: '1px solid #E5E5E0' }}
+                      className="hover:bg-[#F5F5F0] transition-colors"
                     >
-                      <td className="px-4 py-3" style={{ color: '#f0efe9' }}>
+                      <td className="px-4 py-3" style={{ color: '#1A1A1A' }}>
                         {cf.name}
                       </td>
-                      <td className="px-4 py-3" style={{ color: '#6b6b74' }}>
+                      <td className="px-4 py-3" style={{ color: '#9B9B9B' }}>
                         {cf.email}
                       </td>
                       <td className="px-4 py-3">
@@ -333,29 +324,29 @@ export default function AdminPage() {
                           style={{
                             background:
                               status === 'approved'
-                                ? 'rgba(0, 201, 167, 0.15)'
+                                ? 'rgba(74, 158, 126, 0.1)'
                                 : status === 'changes_requested'
-                                ? 'rgba(251, 191, 36, 0.15)'
-                                : '#2a2a30',
+                                ? 'rgba(201, 146, 62, 0.1)'
+                                : '#F0F0EA',
                             color:
                               status === 'approved'
-                                ? '#00c9a7'
+                                ? '#4A9E7E'
                                 : status === 'changes_requested'
-                                ? '#fbbf24'
-                                : '#6b6b74',
+                                ? '#C9923E'
+                                : '#9B9B9B',
                           }}
                         >
                           {status}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-xs" style={{ color: '#6b6b74' }}>
+                      <td className="px-4 py-3 text-xs" style={{ color: '#9B9B9B' }}>
                         {formatDate(cf.created_at)}
                       </td>
                       <td className="px-4 py-3">
                         <button
                           onClick={() => handleRemoveCofounder(cf.id)}
-                          className="w-7 h-7 rounded flex items-center justify-center transition-colors hover:bg-[rgba(233,69,96,0.1)]"
-                          style={{ color: '#6b6b74' }}
+                          className="w-7 h-7 rounded flex items-center justify-center transition-colors hover:bg-[rgba(217,119,87,0.1)]"
+                          style={{ color: '#9B9B9B' }}
                         >
                           <Trash2 size={13} />
                         </button>
@@ -368,7 +359,7 @@ export default function AdminPage() {
                     <td
                       colSpan={5}
                       className="px-4 py-6 text-center text-sm"
-                      style={{ color: '#6b6b74' }}
+                      style={{ color: '#9B9B9B' }}
                     >
                       No co-founders configured yet.
                     </td>
@@ -384,7 +375,7 @@ export default function AdminPage() {
           <div className="flex items-center justify-between mb-4">
             <h2
               className="text-xl font-semibold"
-              style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+              style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
             >
               Comments ({comments.length})
             </h2>
@@ -392,11 +383,7 @@ export default function AdminPage() {
               value={sectionFilter}
               onChange={(e) => setSectionFilter(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg outline-none"
-              style={{
-                background: '#13131a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-              }}
+              style={inputStyle}
             >
               <option value="">All sections</option>
               {Array.from(new Set(comments.map((c) => c.section_id))).map((s) => (
@@ -412,26 +399,26 @@ export default function AdminPage() {
               <div
                 key={comment.id}
                 className="rounded-xl p-4"
-                style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+                style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span
                     className="text-xs font-semibold"
-                    style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                    style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {comment.cofounders?.name || 'Unknown'} — {comment.section_id}
                   </span>
-                  <span className="text-xs" style={{ color: '#6b6b74' }}>
+                  <span className="text-xs" style={{ color: '#9B9B9B' }}>
                     {formatDate(comment.created_at)}
                   </span>
                 </div>
-                <p className="text-sm" style={{ color: '#f0efe9' }}>
+                <p className="text-sm" style={{ color: '#1A1A1A' }}>
                   {comment.content}
                 </p>
               </div>
             ))}
             {filteredComments.length === 0 && (
-              <p className="text-sm text-center py-6" style={{ color: '#6b6b74' }}>
+              <p className="text-sm text-center py-6" style={{ color: '#9B9B9B' }}>
                 No comments yet.
               </p>
             )}
@@ -442,7 +429,7 @@ export default function AdminPage() {
         <section>
           <h2
             className="text-xl font-semibold mb-4"
-            style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+            style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             Approval history ({approvals.length})
           </h2>
@@ -451,12 +438,12 @@ export default function AdminPage() {
               <div
                 key={a.id}
                 className="rounded-xl p-4 flex items-start justify-between gap-4"
-                style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+                style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
               >
                 <div>
                   <span
                     className="text-xs font-semibold"
-                    style={{ color: '#f0efe9', fontFamily: 'var(--font-space-mono)' }}
+                    style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {a.cofounders?.name || 'Unknown'}
                   </span>
@@ -465,26 +452,26 @@ export default function AdminPage() {
                     style={{
                       background:
                         a.action === 'approved'
-                          ? 'rgba(0, 201, 167, 0.15)'
-                          : 'rgba(251, 191, 36, 0.15)',
-                      color: a.action === 'approved' ? '#00c9a7' : '#fbbf24',
+                          ? 'rgba(74, 158, 126, 0.1)'
+                          : 'rgba(201, 146, 62, 0.1)',
+                      color: a.action === 'approved' ? '#4A9E7E' : '#C9923E',
                     }}
                   >
                     {a.action}
                   </span>
                   {a.note && (
-                    <p className="text-xs mt-1 italic" style={{ color: '#6b6b74' }}>
+                    <p className="text-xs mt-1 italic" style={{ color: '#9B9B9B' }}>
                       &ldquo;{a.note}&rdquo;
                     </p>
                   )}
                 </div>
-                <span className="text-xs flex-shrink-0" style={{ color: '#6b6b74' }}>
+                <span className="text-xs flex-shrink-0" style={{ color: '#9B9B9B' }}>
                   {formatDate(a.created_at)}
                 </span>
               </div>
             ))}
             {approvals.length === 0 && (
-              <p className="text-sm text-center py-6" style={{ color: '#6b6b74' }}>
+              <p className="text-sm text-center py-6" style={{ color: '#9B9B9B' }}>
                 No approval actions yet.
               </p>
             )}

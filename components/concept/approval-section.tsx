@@ -59,18 +59,18 @@ export function ApprovalSection({
       <div
         className="rounded-2xl p-10 text-center mt-10"
         style={{
-          background: 'rgba(0, 201, 167, 0.08)',
-          border: '1px solid rgba(0, 201, 167, 0.3)',
+          background: 'rgba(74, 158, 126, 0.06)',
+          border: '1px solid rgba(74, 158, 126, 0.25)',
         }}
       >
         <div className="text-5xl mb-4">✓</div>
         <h3
           className="text-2xl font-bold mb-2"
-          style={{ color: '#00c9a7', fontFamily: 'var(--font-syne)' }}
+          style={{ color: '#4A9E7E', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
         >
           Concept approved. Let&apos;s build.
         </h3>
-        <p className="text-sm" style={{ color: '#6b6b74' }}>
+        <p className="text-sm" style={{ color: '#9B9B9B' }}>
           All co-founders have approved. Phase 1 is next.
         </p>
       </div>
@@ -89,13 +89,13 @@ export function ApprovalSection({
             key={cf.id}
             className="rounded-xl p-6 transition-all duration-200"
             style={{
-              background: '#13131a',
+              background: '#FFFFFF',
               border: `1px solid ${
                 status === 'approved'
-                  ? 'rgba(0, 201, 167, 0.3)'
+                  ? 'rgba(74, 158, 126, 0.3)'
                   : status === 'changes_requested'
-                  ? 'rgba(251, 191, 36, 0.3)'
-                  : '#2a2a30'
+                  ? 'rgba(201, 146, 62, 0.3)'
+                  : '#E5E5E0'
               }`,
             }}
           >
@@ -103,34 +103,34 @@ export function ApprovalSection({
               <div>
                 <h4
                   className="text-base font-semibold"
-                  style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+                  style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   {cf.name}
                   {isCurrentUser && (
-                    <span className="ml-2 text-xs" style={{ color: '#6b6b74' }}>
+                    <span className="ml-2 text-xs" style={{ color: '#9B9B9B' }}>
                       (you)
                     </span>
                   )}
                 </h4>
                 {status === 'approved' && latestAction && (
-                  <p className="text-sm mt-1" style={{ color: '#00c9a7' }}>
+                  <p className="text-sm mt-1" style={{ color: '#4A9E7E' }}>
                     ✓ Approved on {formatDate(latestAction.created_at)}
                   </p>
                 )}
                 {status === 'changes_requested' && latestAction && (
                   <div>
-                    <p className="text-sm mt-1" style={{ color: '#fbbf24' }}>
+                    <p className="text-sm mt-1" style={{ color: '#C9923E' }}>
                       ~ Requested changes on {formatDate(latestAction.created_at)}
                     </p>
                     {latestAction.note && (
-                      <p className="text-sm mt-1 italic" style={{ color: '#6b6b74' }}>
+                      <p className="text-sm mt-1 italic" style={{ color: '#9B9B9B' }}>
                         &ldquo;{latestAction.note}&rdquo;
                       </p>
                     )}
                   </div>
                 )}
                 {status === 'pending' && (
-                  <p className="text-sm mt-1" style={{ color: '#6b6b74' }}>
+                  <p className="text-sm mt-1" style={{ color: '#9B9B9B' }}>
                     Pending review
                   </p>
                 )}
@@ -143,9 +143,9 @@ export function ApprovalSection({
                     disabled={loading}
                     className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-50"
                     style={{
-                      background: '#e94560',
-                      color: '#f0efe9',
-                      fontFamily: 'var(--font-outfit)',
+                      background: '#D97757',
+                      color: '#FFFFFF',
+                      fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
                     }}
                   >
                     Approve concept
@@ -153,12 +153,12 @@ export function ApprovalSection({
                   <button
                     onClick={() => setShowChangesInput(cf.id)}
                     disabled={loading}
-                    className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:border-[rgba(233,69,96,0.3)] disabled:opacity-50"
+                    className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-50"
                     style={{
                       background: 'transparent',
-                      color: '#6b6b74',
-                      border: '1px solid #2a2a30',
-                      fontFamily: 'var(--font-outfit)',
+                      color: '#6B6B6B',
+                      border: '1px solid #E5E5E0',
+                      fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
                     }}
                   >
                     Request changes
@@ -176,10 +176,10 @@ export function ApprovalSection({
                   rows={3}
                   className="w-full rounded-lg px-3 py-2 text-sm outline-none resize-none"
                   style={{
-                    background: '#08080a',
-                    border: '1px solid #2a2a30',
-                    color: '#f0efe9',
-                    fontFamily: 'var(--font-outfit)',
+                    background: '#FAFAF8',
+                    border: '1px solid #E5E5E0',
+                    color: '#1A1A1A',
+                    fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
                   }}
                 />
                 <div className="flex gap-2 mt-2">
@@ -188,9 +188,9 @@ export function ApprovalSection({
                     disabled={loading}
                     className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-50"
                     style={{
-                      background: 'rgba(251, 191, 36, 0.15)',
-                      color: '#fbbf24',
-                      border: '1px solid rgba(251, 191, 36, 0.3)',
+                      background: 'rgba(201, 146, 62, 0.1)',
+                      color: '#C9923E',
+                      border: '1px solid rgba(201, 146, 62, 0.3)',
                     }}
                   >
                     Submit changes request
@@ -198,7 +198,7 @@ export function ApprovalSection({
                   <button
                     onClick={() => setShowChangesInput(null)}
                     className="px-4 py-2 rounded-lg text-sm"
-                    style={{ color: '#6b6b74' }}
+                    style={{ color: '#9B9B9B' }}
                   >
                     Cancel
                   </button>
@@ -210,7 +210,7 @@ export function ApprovalSection({
       })}
 
       {!identity && (
-        <p className="text-sm text-center mt-4" style={{ color: '#6b6b74' }}>
+        <p className="text-sm text-center mt-4" style={{ color: '#9B9B9B' }}>
           Viewing mode. You&apos;re not a configured reviewer.
         </p>
       )}

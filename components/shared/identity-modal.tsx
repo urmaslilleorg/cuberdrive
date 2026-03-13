@@ -50,30 +50,30 @@ export function IdentityModal({ onClose, onSuccess }: IdentityModalProps) {
       {/* Backdrop */}
       <div
         className="absolute inset-0"
-        style={{ background: 'rgba(0,0,0,0.7)' }}
+        style={{ background: 'rgba(0,0,0,0.2)' }}
         onClick={onClose}
       />
 
       {/* Modal */}
       <div
         className="relative w-full max-w-sm rounded-2xl p-6"
-        style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+        style={{ background: '#FFFFFF', border: '1px solid #E5E5E0', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center transition-colors hover:bg-[#2a2a30]"
-          style={{ color: '#6b6b74' }}
+          className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center transition-colors hover:bg-[#F5F5F0]"
+          style={{ color: '#9B9B9B' }}
         >
           <X size={16} />
         </button>
 
         <h2
           className="text-lg font-semibold mb-1"
-          style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+          style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
         >
           Identify yourself
         </h2>
-        <p className="text-sm mb-5" style={{ color: '#6b6b74' }}>
+        <p className="text-sm mb-5" style={{ color: '#6B6B6B' }}>
           Enter your name and email to comment and approve.
         </p>
 
@@ -87,10 +87,10 @@ export function IdentityModal({ onClose, onSuccess }: IdentityModalProps) {
               required
               className="w-full px-3 py-2.5 rounded-lg text-sm outline-none transition-all"
               style={{
-                background: '#08080a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-                fontFamily: 'var(--font-outfit)',
+                background: '#FAFAF8',
+                border: '1px solid #E5E5E0',
+                color: '#1A1A1A',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
               }}
             />
           </div>
@@ -103,16 +103,16 @@ export function IdentityModal({ onClose, onSuccess }: IdentityModalProps) {
               required
               className="w-full px-3 py-2.5 rounded-lg text-sm outline-none transition-all"
               style={{
-                background: '#08080a',
-                border: '1px solid #2a2a30',
-                color: '#f0efe9',
-                fontFamily: 'var(--font-outfit)',
+                background: '#FAFAF8',
+                border: '1px solid #E5E5E0',
+                color: '#1A1A1A',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
               }}
             />
           </div>
 
           {error && (
-            <p className="text-sm" style={{ color: '#e94560' }}>
+            <p className="text-sm" style={{ color: '#D97757' }}>
               {error}
             </p>
           )}
@@ -122,9 +122,9 @@ export function IdentityModal({ onClose, onSuccess }: IdentityModalProps) {
             disabled={loading || !name.trim() || !email.trim()}
             className="w-full py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-50"
             style={{
-              background: '#e94560',
-              color: '#f0efe9',
-              fontFamily: 'var(--font-outfit)',
+              background: '#D97757',
+              color: '#FFFFFF',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
             }}
           >
             {loading ? 'Checking...' : 'Continue'}

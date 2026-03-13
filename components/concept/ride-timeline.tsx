@@ -52,7 +52,7 @@ export function RideTimeline() {
       {/* Vertical line */}
       <div
         className="absolute left-1/2 top-0 bottom-0 w-px hidden md:block"
-        style={{ background: '#2a2a30', transform: 'translateX(-50%)' }}
+        style={{ background: '#E5E5E0', transform: 'translateX(-50%)' }}
       />
 
       <div className="space-y-8">
@@ -68,26 +68,26 @@ export function RideTimeline() {
               {/* Content */}
               <div className={`flex-1 ${isLeft ? 'md:text-right' : 'md:text-left'} text-left`}>
                 <div
-                  className="inline-block rounded-xl p-6 transition-all duration-200 hover:border-[rgba(233,69,96,0.3)]"
+                  className="inline-block rounded-xl p-6 transition-all duration-200 hover:border-[#D5D5D0]"
                   style={{
-                    background: '#13131a',
-                    border: '1px solid #2a2a30',
+                    background: '#FFFFFF',
+                    border: '1px solid #E5E5E0',
                     maxWidth: '400px',
                   }}
                 >
                   <div
-                    className="text-xs font-mono mb-2"
-                    style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                    className="text-xs font-medium mb-2"
+                    style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {step.number}
                   </div>
                   <h3
                     className="text-lg font-semibold mb-2"
-                    style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+                    style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {step.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#6b6b74' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
                     {step.desc}
                   </p>
                 </div>
@@ -97,13 +97,13 @@ export function RideTimeline() {
               <div
                 className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center hidden md:flex"
                 style={{
-                  background: '#08080a',
-                  border: '2px solid #e94560',
+                  background: '#FAFAF8',
+                  border: '2px solid #D97757',
                 }}
               >
                 <span
-                  className="text-xs font-mono font-bold"
-                  style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                  className="text-xs font-medium"
+                  style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   {i + 1}
                 </span>

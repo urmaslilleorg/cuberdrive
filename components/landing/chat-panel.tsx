@@ -1,20 +1,46 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { ArrowRight, X, RotateCcw } from 'lucide-react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
 import { ChatMessage } from './chat-message';
 import { Message, sendMessage } from '@/lib/chat';
 import { getSessionId, clearSession } from '@/lib/identity';
 
 const EXAMPLE_PROMPTS = [
-  'I need a summer campaign for sunscreen across FB, IG, DOOH',
-  'Brand identity refresh for a Nordic skincare startup',
-  '20 banner variants for a pharma product launch',
+  'Summer campaign for sunscreen',
+  'Brand identity refresh for a startup',
+  '20 banner variants for a product launch',
   'Social content calendar for Q3',
 ];
 
 interface ChatPanelProps {
   onChatActive: (active: boolean) => void;
+}
+
+// Extract clickable options from assistant message
+// Looks for lines starting with A), B), C) or 1., 2., 3. or — or bullet patterns
+function extractOptions(content: string): string[] {
+  const lines = content.split('\n');
+  const options: string[] = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Match: A) ..., B) ..., 1. ..., 2. ..., - ..., • ...
+    const match = trimmed.match(/^(?:[A-D]\)|[1-9]\.|[-•–])\s+(.+)$/);
+    if (match && match[1]) {
+      const text = match[1].trim();
+      // Only include short options (not full sentences > 80 chars)
+      if (text.length <= 80) {
+        options.push(text);
+      }
+    }
+  }
+
+  // Return options only if we found 2–6 of them (looks like a real choice list)
+  if (options.length >= 2 && options.length <= 6) {
+    return options;
+  }
+  return [];
 }
 
 export function ChatPanel({ onChatActive }: ChatPanelProps) {
@@ -135,19 +161,24 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
     setTimeout(() => handleSubmit(prompt), 50);
   };
 
+  // Get options from the last assistant message (only when not streaming)
+  const lastMessage = messages[messages.length - 1];
+  const pillOptions =
+    !isStreaming && lastMessage?.role === 'assistant' && lastMessage.content
+      ? extractOptions(lastMessage.content)
+      : [];
+
   return (
     <div className="w-full max-w-[600px] mx-auto">
       {/* Chat messages area */}
       {isActive && (
         <div
           ref={chatContainerRef}
-          className="mb-3 overflow-y-auto rounded-xl"
+          className="mb-3 overflow-y-auto"
           style={{
             maxHeight: '60vh',
             minHeight: '200px',
-            background: 'rgba(19, 19, 26, 0.6)',
-            border: '1px solid #2a2a30',
-            padding: '16px',
+            padding: '16px 0',
           }}
         >
           {messages.map((msg, i) => (
@@ -162,11 +193,36 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
         </div>
       )}
 
+      {/* Clickable pill options (shown after last assistant message, not streaming) */}
+      {isActive && pillOptions.length > 0 && (
+        <div className="mb-3 flex flex-wrap gap-2">
+          {pillOptions.map((option, i) => (
+            <button
+              key={i}
+              onClick={() => handlePromptClick(option)}
+              className="text-sm px-3 py-1.5 rounded-full transition-all duration-150 hover:border-[#D97757] hover:text-[#D97757] cursor-pointer"
+              style={{
+                color: '#6B6B6B',
+                background: '#FFFFFF',
+                border: '1px solid #E5E5E0',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Rate limit error */}
       {rateLimitError && (
         <div
           className="mb-3 px-4 py-2 rounded-lg text-sm text-center"
-          style={{ background: 'rgba(233, 69, 96, 0.1)', color: '#e94560', border: '1px solid rgba(233, 69, 96, 0.2)' }}
+          style={{
+            background: 'rgba(217, 119, 87, 0.06)',
+            color: '#D97757',
+            border: '1px solid rgba(217, 119, 87, 0.2)',
+          }}
         >
           {rateLimitError}
         </div>
@@ -176,13 +232,10 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
       <div
         className="relative flex items-center gap-2 rounded-xl transition-all duration-200"
         style={{
-          background: '#13131a',
-          border: '1px solid #2a2a30',
+          background: '#FFFFFF',
+          border: '1px solid #E5E5E0',
           padding: '12px 16px',
-        }}
-        onFocus={() => {
-          const el = document.querySelector('.chat-input-wrapper') as HTMLElement;
-          if (el) el.style.borderColor = '#e94560';
+          boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
         }}
       >
         <textarea
@@ -194,10 +247,10 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
           disabled={isStreaming}
           maxLength={2000}
           rows={1}
-          className="flex-1 bg-transparent outline-none resize-none text-sm leading-relaxed placeholder:text-[#6b6b74] disabled:opacity-50"
+          className="flex-1 bg-transparent outline-none resize-none text-sm leading-relaxed disabled:opacity-50"
           style={{
-            color: '#f0efe9',
-            fontFamily: 'var(--font-outfit)',
+            color: '#1A1A1A',
+            fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
             minHeight: '24px',
             maxHeight: '120px',
           }}
@@ -212,8 +265,8 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
           disabled={isStreaming || !input.trim()}
           className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 disabled:opacity-30"
           style={{
-            background: '#e94560',
-            color: '#f0efe9',
+            background: '#D97757',
+            color: '#FFFFFF',
           }}
         >
           <ArrowRight size={16} />
@@ -227,15 +280,15 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
             <button
               key={i}
               onClick={() => handlePromptClick(prompt)}
-              className="text-xs px-3 py-1.5 rounded-full transition-colors duration-200 hover:text-[#e94560] cursor-pointer"
+              className="text-xs px-3 py-1.5 rounded-full transition-colors duration-200 hover:border-[#D97757] hover:text-[#D97757] cursor-pointer"
               style={{
-                color: '#6b6b74',
+                color: '#9B9B9B',
                 background: 'transparent',
-                border: '1px solid #2a2a30',
-                fontFamily: 'var(--font-space-mono)',
+                border: '1px solid #E5E5E0',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
               }}
             >
-              &quot;{prompt}&quot;
+              {prompt}
             </button>
           ))}
         </div>
@@ -246,8 +299,11 @@ export function ChatPanel({ onChatActive }: ChatPanelProps) {
         <div className="mt-2 flex justify-center">
           <button
             onClick={handleNewChat}
-            className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#f0efe9]"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+            className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#1A1A1A]"
+            style={{
+              color: '#9B9B9B',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+            }}
           >
             <RotateCcw size={12} />
             New conversation

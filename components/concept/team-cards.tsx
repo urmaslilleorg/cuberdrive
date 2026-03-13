@@ -4,28 +4,28 @@ const TEAM = [
     role: 'The Mastermind',
     desc: 'Vision, product decisions, sign-off.',
     quote: 'Every decision made clearly = one less day of development.',
-    color: '#e94560',
+    color: '#D97757',
   },
   {
     name: 'Claude',
     role: 'The Architect',
     desc: 'System design, phase briefs, knowledge keeper.',
     quote: 'Holds the entire project in memory.',
-    color: '#a855f7',
+    color: '#9B59B6',
   },
   {
     name: 'Manus',
     role: 'The Fixer',
     desc: 'Full implementation from briefs.',
     quote: "Executes what is written. If it's not in the brief, it won't be built.",
-    color: '#3b82f6',
+    color: '#3B7DD8',
   },
   {
     name: 'Cursor',
     role: 'The Cleaner',
     desc: 'Visual polish after core is complete.',
     quote: 'Cursor after Manus, never instead of Manus.',
-    color: '#00c9a7',
+    color: '#4A9E7E',
   },
 ];
 
@@ -35,27 +35,31 @@ export function TeamCards() {
       {TEAM.map((member, i) => (
         <div
           key={i}
-          className={`stagger-${i + 1} rounded-xl p-6 transition-all duration-200`}
+          className={`stagger-${i + 1} rounded-xl p-6 transition-all duration-200 hover:border-[#D5D5D0]`}
           style={{
-            background: '#13131a',
-            border: '1px solid #2a2a30',
+            background: '#FFFFFF',
+            border: '1px solid #E5E5E0',
           }}
         >
           <div className="flex items-start gap-3 mb-3">
             <div
               className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold"
-              style={{ background: `${member.color}20`, color: member.color, fontFamily: 'var(--font-space-mono)' }}
+              style={{
+                background: `${member.color}14`,
+                color: member.color,
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              }}
             >
               {member.name[0]}
             </div>
             <div>
               <h3
                 className="text-base font-semibold"
-                style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+                style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
               >
                 {member.name} — {member.role}
               </h3>
-              <p className="text-sm mt-0.5" style={{ color: '#6b6b74' }}>
+              <p className="text-sm mt-0.5" style={{ color: '#6B6B6B' }}>
                 {member.desc}
               </p>
             </div>
@@ -65,8 +69,8 @@ export function TeamCards() {
             style={{
               color: member.color,
               borderLeft: `2px solid ${member.color}`,
-              fontFamily: 'var(--font-outfit)',
-              fontWeight: 300,
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
             }}
           >
             &ldquo;{member.quote}&rdquo;

@@ -28,12 +28,10 @@ export default function ConceptPage() {
   const [showIdentityModal, setShowIdentityModal] = useState(false);
   const [pendingCommentSection, setPendingCommentSection] = useState<string | null>(null);
 
-  // Load identity from localStorage
   useEffect(() => {
     setIdentityState(getIdentity());
   }, []);
 
-  // Fetch initial data
   const fetchData = useCallback(async () => {
     const [cfRes, commentsRes, approvalsRes] = await Promise.all([
       supabase.from('cofounders').select('*').order('created_at'),
@@ -56,7 +54,6 @@ export default function ConceptPage() {
     fetchData();
   }, [fetchData]);
 
-  // Realtime subscriptions
   useEffect(() => {
     const commentsChannel = supabase
       .channel('comments-realtime')
@@ -157,7 +154,11 @@ export default function ConceptPage() {
   }) => (
     <h2
       className={`text-3xl md:text-4xl font-bold mb-6 ${centered ? 'text-center' : ''}`}
-      style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+      style={{
+        color: '#1A1A1A',
+        fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+        letterSpacing: '-0.02em',
+      }}
     >
       {children}
     </h2>
@@ -173,34 +174,40 @@ export default function ConceptPage() {
     accentColor?: string;
   }) => (
     <div
-      className="rounded-xl p-6 transition-all duration-200 hover:border-[rgba(233,69,96,0.3)]"
-      style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+      className="rounded-xl p-6 transition-all duration-200 hover:border-[#D5D5D0]"
+      style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
     >
       <h3
-        className="text-lg font-semibold mb-3"
-        style={{ color: accentColor || '#f0efe9', fontFamily: 'var(--font-syne)' }}
+        className="text-base font-semibold mb-3"
+        style={{
+          color: accentColor || '#1A1A1A',
+          fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+        }}
       >
         {title}
       </h3>
-      <p className="text-sm leading-relaxed" style={{ color: '#6b6b74' }}>
+      <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
         {children}
       </p>
     </div>
   );
 
   return (
-    <div style={{ background: '#08080a', minHeight: '100vh' }}>
+    <div style={{ background: '#FAFAF8', minHeight: '100vh' }}>
       {/* Sticky top bar */}
-      <div className="sticky top-0 z-30" style={{ background: '#08080a' }}>
+      <div className="sticky top-0 z-30" style={{ background: '#FAFAF8' }}>
         {/* Nav */}
         <div
           className="flex items-center justify-between px-6 py-3"
-          style={{ borderBottom: '1px solid #2a2a30' }}
+          style={{ borderBottom: '1px solid #E5E5E0' }}
         >
           <Logo size="small" linkTo="/" />
           <span
             className="text-xs hidden sm:block"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+            style={{
+              color: '#9B9B9B',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+            }}
           >
             Phase 0 — Concept
           </span>
@@ -219,7 +226,7 @@ export default function ConceptPage() {
         >
           <SectionHeading>The agency model is breaking</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-2">
-            <Card title="In-house trap" accentColor="#e94560">
+            <Card title="In-house trap" accentColor="#D97757">
               Expensive fixed teams. Limited talent pool. Siloed departments. Can&apos;t scale up or down.
             </Card>
             <Card title="Holding company overhead">
@@ -232,10 +239,14 @@ export default function ConceptPage() {
 
           <p
             className="mt-8 text-base md:text-lg leading-relaxed stagger-3"
-            style={{ color: '#f0efe9', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+            style={{
+              color: '#1A1A1A',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+            }}
           >
             Marketing is fragmented into silos — Creative, Media Planning, Research, Testing, Production — each with its own agency, its own P&L, its own workflow.{' '}
-            <span style={{ color: '#e94560' }}>The brand pays for the gaps.</span>
+            <span style={{ color: '#D97757' }}>The brand pays for the gaps.</span>
           </p>
 
           <div className="grid grid-cols-3 gap-8 mt-10 stagger-4">
@@ -255,13 +266,21 @@ export default function ConceptPage() {
           <div className="max-w-2xl mx-auto text-center">
             <p
               className="text-xl md:text-2xl font-medium leading-relaxed mb-6 stagger-2"
-              style={{ color: '#f0efe9', fontFamily: 'var(--font-syne)' }}
+              style={{
+                color: '#1A1A1A',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                letterSpacing: '-0.01em',
+              }}
             >
               A platform where brands post a need, AI structures it into a brief, matched talent bids instantly, and you track delivery like tracking a ride.
             </p>
             <p
               className="text-base stagger-3"
-              style={{ color: '#6b6b74', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+              style={{
+                color: '#6B6B6B',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+              }}
             >
               No agency overhead. No freelance chaos. Just the right talent, the right price, the right workflow.
             </p>
@@ -277,7 +296,11 @@ export default function ConceptPage() {
           <SectionHeading>Introducing CUBER</SectionHeading>
           <p
             className="text-base md:text-lg leading-relaxed max-w-3xl mb-8 stagger-2"
-            style={{ color: '#f0efe9', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+            style={{
+              color: '#1A1A1A',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+            }}
           >
             A decentralised creative agency platform where brands post creative needs through a guided dialogue, AI structures it into a brief, matched freelance talent bids automatically, and the brand chooses from capability-based packages — then tracks delivery like an Uber ride. AI agents trained on brand knowledge work alongside freelancers as embedded coworkers.
           </p>
@@ -285,29 +308,29 @@ export default function ConceptPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-3">
             <div
               className="rounded-xl p-6"
-              style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+              style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
             >
               <div
-                className="text-xs font-mono mb-2"
-                style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                className="text-xs font-medium mb-2"
+                style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
               >
                 Target
               </div>
-              <p className="text-sm" style={{ color: '#f0efe9' }}>
+              <p className="text-sm" style={{ color: '#1A1A1A' }}>
                 Mid-size brands with €1M–€20M annual ad spend escaping holding company dependency
               </p>
             </div>
             <div
               className="rounded-xl p-6"
-              style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+              style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
             >
               <div
-                className="text-xs font-mono mb-2"
-                style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                className="text-xs font-medium mb-2"
+                style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
               >
                 MVP scope
               </div>
-              <p className="text-sm" style={{ color: '#f0efe9' }}>
+              <p className="text-sm" style={{ color: '#1A1A1A' }}>
                 Creative + production silos. Working prototype with synthetic data.
               </p>
             </div>
@@ -332,19 +355,23 @@ export default function ConceptPage() {
         >
           <SectionHeading>Your AI team never sleeps</SectionHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-2">
-            <Card title="Brief Agent" accentColor="#a855f7">
+            <Card title="Brief Agent" accentColor="#9B59B6">
               Turns vague requests into structured briefs through dialogue. Uses market data and brand history to add context.
             </Card>
-            <Card title="Brand CMO Agent" accentColor="#3b82f6">
+            <Card title="Brand CMO Agent" accentColor="#3B7DD8">
               Reviews every deliverable against brand guidelines, tone of voice, and past approved work. Flags issues before the client sees them.
             </Card>
-            <Card title="Talent Bid Agent" accentColor="#00c9a7">
+            <Card title="Talent Bid Agent" accentColor="#4A9E7E">
               Pre-fills bids, matches portfolio examples, suggests pricing based on the talent&apos;s rate card and brief requirements.
             </Card>
           </div>
           <p
             className="mt-8 text-sm stagger-3"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+            style={{
+              color: '#9B9B9B',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+            }}
           >
             Powered by OpenClaw architecture — persistent, autonomous, skill-based agents that learn from every interaction. Inspired by the viral open-source AI agent framework of early 2026.
           </p>
@@ -362,23 +389,23 @@ export default function ConceptPage() {
               {
                 layer: 'Layer 1: Common',
                 desc: 'Industry rates, benchmarks, delivery timelines, quality standards across all creative disciplines.',
-                color: '#3b82f6',
+                color: '#3B7DD8',
               },
               {
                 layer: 'Layer 2: Category',
                 desc: 'Per vertical expertise: advertising, branding, content production, digital, print.',
-                color: '#a855f7',
+                color: '#9B59B6',
               },
               {
                 layer: 'Layer 3: Brand Vault',
                 desc: 'CVI, tone of voice, campaign history, approved/rejected work, feedback preferences. The more a brand uses CUBER, the smarter it gets.',
-                color: '#e94560',
+                color: '#D97757',
               },
             ].map((item, i) => (
               <div
                 key={i}
                 className="rounded-xl p-5 flex gap-4 items-start"
-                style={{ background: '#13131a', border: `1px solid ${item.color}30` }}
+                style={{ background: '#FFFFFF', border: `1px solid ${item.color}30` }}
               >
                 <div
                   className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
@@ -387,11 +414,11 @@ export default function ConceptPage() {
                 <div>
                   <h4
                     className="text-sm font-semibold mb-1"
-                    style={{ color: item.color, fontFamily: 'var(--font-space-mono)' }}
+                    style={{ color: item.color, fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {item.layer}
                   </h4>
-                  <p className="text-sm leading-relaxed" style={{ color: '#6b6b74' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
                     {item.desc}
                   </p>
                 </div>
@@ -400,7 +427,7 @@ export default function ConceptPage() {
           </div>
           <p
             className="mt-6 text-xs stagger-3"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+            style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             Data architecture derived from the Südameapteek AI Marketing Expert three-layer model — battle-tested in production.
           </p>
@@ -415,17 +442,25 @@ export default function ConceptPage() {
           <SectionHeading>Output-based pricing — borrowed from pharma</SectionHeading>
           <p
             className="text-base leading-relaxed max-w-2xl mb-2 stagger-2"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+            style={{
+              color: '#6B6B6B',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+            }}
           >
             Global brands like Sandoz/Novartis already buy creative through structured output-based menu cards with fixed pricing per deliverable type and complexity tier. CUBER democratises this model.
           </p>
           <PricingTable />
           <p
             className="mt-4 text-sm stagger-3"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+            style={{
+              color: '#6B6B6B',
+              fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+            }}
           >
             Talent sets their rates per deliverable. CUBER aggregates bids into fixed packages.{' '}
-            <span style={{ color: '#f0efe9' }}>The brand never haggles.</span>
+            <span style={{ color: '#1A1A1A' }}>The brand never haggles.</span>
           </p>
         </ConceptSection>
 
@@ -447,20 +482,19 @@ export default function ConceptPage() {
         >
           <SectionHeading>Cooper — your brand team in a box</SectionHeading>
           <div className="flex flex-col md:flex-row gap-8 items-start stagger-2">
-            {/* Mac Mini illustration */}
+            {/* Device illustration */}
             <div
               className="flex-shrink-0 w-32 h-32 rounded-2xl flex items-center justify-center"
               style={{
-                background: '#13131a',
-                border: '1px solid rgba(233, 69, 96, 0.3)',
-                boxShadow: '0 0 40px rgba(233, 69, 96, 0.1)',
+                background: '#F5F5F0',
+                border: '1px solid rgba(217, 119, 87, 0.25)',
               }}
             >
               <div className="text-center">
                 <div className="text-4xl mb-1">⬛</div>
                 <div
-                  className="text-xs font-mono"
-                  style={{ color: '#e94560', fontFamily: 'var(--font-space-mono)' }}
+                  className="text-xs font-medium"
+                  style={{ color: '#D97757', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   Cooper
                 </div>
@@ -470,23 +504,31 @@ export default function ConceptPage() {
             <div className="flex-1">
               <p
                 className="text-base leading-relaxed mb-4"
-                style={{ color: '#f0efe9', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+                style={{
+                  color: '#1A1A1A',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  fontWeight: 400,
+                }}
               >
                 A dedicated hardware device — delivered to a freelancer or agency — running the brand&apos;s AI agents locally. Persistent memory. 24/7 operation. Deep brand knowledge. Zero cloud latency.
               </p>
               <p
                 className="text-sm leading-relaxed mb-4"
-                style={{ color: '#6b6b74', fontFamily: 'var(--font-outfit)', fontWeight: 300 }}
+                style={{
+                  color: '#6B6B6B',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  fontWeight: 400,
+                }}
               >
                 Inspired by the OpenClaw + Mac Mini trend of early 2026: thousands of people running autonomous AI agents on dedicated hardware.
               </p>
               <span
                 className="inline-block text-xs px-3 py-1.5 rounded-full"
                 style={{
-                  background: 'rgba(251, 191, 36, 0.1)',
-                  color: '#fbbf24',
-                  border: '1px solid rgba(251, 191, 36, 0.2)',
-                  fontFamily: 'var(--font-space-mono)',
+                  background: 'rgba(201, 146, 62, 0.08)',
+                  color: '#C9923E',
+                  border: '1px solid rgba(201, 146, 62, 0.2)',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
                 }}
               >
                 V2 concept — included in prototype UI, not built yet
@@ -514,17 +556,17 @@ export default function ConceptPage() {
           <SectionHeading>Built to scale from day one</SectionHeading>
           <div className="mt-6 space-y-3 stagger-2">
             {[
-              { tech: 'Next.js 14+', note: 'App Router + TypeScript', color: '#f0efe9' },
-              { tech: 'Tailwind CSS + shadcn/ui', note: 'Design system', color: '#3b82f6' },
-              { tech: 'Supabase', note: 'PostgreSQL + Auth + Realtime + pgvector', color: '#00c9a7' },
-              { tech: 'Claude API', note: 'Agent reasoning', color: '#a855f7' },
-              { tech: 'Vercel', note: 'Hosting + edge functions', color: '#f0efe9' },
-              { tech: 'OpenClaw pattern', note: 'Agent architecture', color: '#e94560' },
+              { tech: 'Next.js 14+', note: 'App Router + TypeScript', color: '#1A1A1A' },
+              { tech: 'Tailwind CSS + shadcn/ui', note: 'Design system', color: '#3B7DD8' },
+              { tech: 'Supabase', note: 'PostgreSQL + Auth + Realtime + pgvector', color: '#4A9E7E' },
+              { tech: 'Claude API', note: 'Agent reasoning', color: '#9B59B6' },
+              { tech: 'Vercel', note: 'Hosting + edge functions', color: '#1A1A1A' },
+              { tech: 'OpenClaw pattern', note: 'Agent architecture', color: '#D97757' },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-200 hover:border-[rgba(233,69,96,0.2)]"
-                style={{ background: '#13131a', border: '1px solid #2a2a30' }}
+                className="flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-200 hover:border-[#D5D5D0]"
+                style={{ background: '#FFFFFF', border: '1px solid #E5E5E0' }}
               >
                 <div
                   className="w-2 h-2 rounded-full flex-shrink-0"
@@ -532,11 +574,11 @@ export default function ConceptPage() {
                 />
                 <span
                   className="text-sm font-medium"
-                  style={{ color: '#f0efe9', fontFamily: 'var(--font-space-mono)' }}
+                  style={{ color: '#1A1A1A', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
                 >
                   {item.tech}
                 </span>
-                <span className="text-sm" style={{ color: '#6b6b74' }}>
+                <span className="text-sm" style={{ color: '#9B9B9B' }}>
                   — {item.note}
                 </span>
               </div>
@@ -544,7 +586,7 @@ export default function ConceptPage() {
           </div>
           <p
             className="mt-6 text-xs stagger-3"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+            style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             No Airtable. Relational data from day one. Marketplace complexity demands PostgreSQL.
           </p>
@@ -583,11 +625,11 @@ export default function ConceptPage() {
             <div className="text-center mt-6">
               <button
                 onClick={() => setShowIdentityModal(true)}
-                className="text-sm transition-colors hover:text-[#f0efe9]"
-                style={{ color: '#6b6b74' }}
+                className="text-sm transition-colors hover:text-[#1A1A1A]"
+                style={{ color: '#9B9B9B' }}
               >
                 Are you a configured reviewer?{' '}
-                <span style={{ color: '#e94560' }}>Sign in →</span>
+                <span style={{ color: '#D97757' }}>Sign in →</span>
               </button>
             </div>
           )}
@@ -596,18 +638,18 @@ export default function ConceptPage() {
         {/* Footer */}
         <footer
           className="py-10 text-center"
-          style={{ borderTop: '1px solid #2a2a30' }}
+          style={{ borderTop: '1px solid #E5E5E0' }}
         >
           <p
-            className="text-sm font-mono"
-            style={{ color: '#6b6b74', fontFamily: 'var(--font-space-mono)' }}
+            className="text-sm"
+            style={{ color: '#9B9B9B', fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif' }}
           >
             CUBER — cuberdrive.com
           </p>
-          <p className="text-xs mt-1" style={{ color: '#6b6b74' }}>
+          <p className="text-xs mt-1" style={{ color: '#9B9B9B' }}>
             © 2026
           </p>
-          <p className="text-xs mt-1" style={{ color: '#2a2a30' }}>
+          <p className="text-xs mt-1" style={{ color: '#E5E5E0' }}>
             Built with the Division AI team playbook
           </p>
         </footer>

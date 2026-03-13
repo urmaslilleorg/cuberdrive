@@ -22,15 +22,15 @@ export function ApprovalBar({ cofounders, approvalActions }: ApprovalBarProps) {
     <div
       className="flex items-center justify-between px-6 py-2.5 text-sm"
       style={{
-        background: allApproved ? 'rgba(0, 201, 167, 0.1)' : '#08080a',
-        borderBottom: `1px solid ${allApproved ? 'rgba(0, 201, 167, 0.3)' : '#2a2a30'}`,
+        background: allApproved ? 'rgba(74, 158, 126, 0.06)' : '#FAFAF8',
+        borderBottom: `1px solid ${allApproved ? 'rgba(74, 158, 126, 0.3)' : '#E5E5E0'}`,
       }}
     >
       <span
-        className="font-mono text-xs"
+        className="text-xs"
         style={{
-          color: allApproved ? '#00c9a7' : '#6b6b74',
-          fontFamily: 'var(--font-space-mono)',
+          color: allApproved ? '#4A9E7E' : '#9B9B9B',
+          fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
         }}
       >
         {allApproved
@@ -49,23 +49,23 @@ export function ApprovalBar({ cofounders, approvalActions }: ApprovalBarProps) {
               style={{
                 background:
                   status === 'approved'
-                    ? 'rgba(0, 201, 167, 0.2)'
+                    ? 'rgba(74, 158, 126, 0.12)'
                     : status === 'changes_requested'
-                    ? 'rgba(251, 191, 36, 0.2)'
-                    : '#2a2a30',
+                    ? 'rgba(201, 146, 62, 0.12)'
+                    : '#F0F0EA',
                 border: `1px solid ${
                   status === 'approved'
-                    ? '#00c9a7'
+                    ? '#4A9E7E'
                     : status === 'changes_requested'
-                    ? '#fbbf24'
-                    : '#2a2a30'
+                    ? '#C9923E'
+                    : '#E5E5E0'
                 }`,
                 color:
                   status === 'approved'
-                    ? '#00c9a7'
+                    ? '#4A9E7E'
                     : status === 'changes_requested'
-                    ? '#fbbf24'
-                    : '#6b6b74',
+                    ? '#C9923E'
+                    : '#9B9B9B',
               }}
             >
               {status === 'approved' ? '✓' : status === 'changes_requested' ? '~' : cf.name[0]}

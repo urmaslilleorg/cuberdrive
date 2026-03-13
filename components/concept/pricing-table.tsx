@@ -15,9 +15,9 @@ export function PricingTable() {
             <th
               className="text-left py-3 px-4 text-sm font-medium"
               style={{
-                color: '#6b6b74',
-                fontFamily: 'var(--font-space-mono)',
-                borderBottom: '1px solid #2a2a30',
+                color: '#9B9B9B',
+                fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                borderBottom: '1px solid #E5E5E0',
               }}
             >
               Deliverable
@@ -27,9 +27,9 @@ export function PricingTable() {
                 key={col}
                 className="text-right py-3 px-4 text-sm font-medium"
                 style={{
-                  color: col === 'Create' ? '#e94560' : '#6b6b74',
-                  fontFamily: 'var(--font-space-mono)',
-                  borderBottom: '1px solid #2a2a30',
+                  color: col === 'Create' ? '#D97757' : '#9B9B9B',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  borderBottom: '1px solid #E5E5E0',
                 }}
               >
                 {col}
@@ -41,44 +41,44 @@ export function PricingTable() {
           {ROWS.map((row, i) => (
             <tr
               key={i}
-              className="transition-colors duration-150 hover:bg-[rgba(255,255,255,0.02)]"
+              className="transition-colors duration-150 hover:bg-[#F5F5F0]"
             >
               <td
                 className="py-3 px-4 text-sm"
                 style={{
-                  color: '#f0efe9',
-                  fontFamily: 'var(--font-outfit)',
-                  borderBottom: '1px solid #2a2a30',
+                  color: '#1A1A1A',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  borderBottom: '1px solid #E5E5E0',
                 }}
               >
                 {row.deliverable}
               </td>
               <td
-                className="py-3 px-4 text-right text-sm font-mono"
+                className="py-3 px-4 text-right text-sm"
                 style={{
-                  color: '#6b6b74',
-                  fontFamily: 'var(--font-space-mono)',
-                  borderBottom: '1px solid #2a2a30',
+                  color: '#9B9B9B',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  borderBottom: '1px solid #E5E5E0',
                 }}
               >
                 {row.adapt}
               </td>
               <td
-                className="py-3 px-4 text-right text-sm font-mono"
+                className="py-3 px-4 text-right text-sm"
                 style={{
-                  color: '#f0efe9',
-                  fontFamily: 'var(--font-space-mono)',
-                  borderBottom: '1px solid #2a2a30',
+                  color: '#6B6B6B',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  borderBottom: '1px solid #E5E5E0',
                 }}
               >
                 {row.customise}
               </td>
               <td
-                className="py-3 px-4 text-right text-sm font-mono font-bold"
+                className="py-3 px-4 text-right text-sm font-semibold"
                 style={{
-                  color: '#e94560',
-                  fontFamily: 'var(--font-space-mono)',
-                  borderBottom: '1px solid #2a2a30',
+                  color: '#D97757',
+                  fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  borderBottom: '1px solid #E5E5E0',
                 }}
               >
                 {row.create}

@@ -9,24 +9,37 @@ interface LogoProps {
 }
 
 export function Logo({ size = 'hero', linkTo = '/concept', className = '' }: LogoProps) {
-  const sizeClasses = {
-    hero: 'text-[clamp(4.5rem,9vw,9rem)]',
-    small: 'text-3xl',
-    mini: 'text-xl',
+  const sizeStyles: Record<string, React.CSSProperties> = {
+    hero: {
+      fontSize: '64px',
+      fontWeight: 700,
+      letterSpacing: '-0.02em',
+      lineHeight: 1,
+    },
+    small: {
+      fontSize: '22px',
+      fontWeight: 700,
+      letterSpacing: '-0.02em',
+      lineHeight: 1,
+    },
+    mini: {
+      fontSize: '16px',
+      fontWeight: 700,
+      letterSpacing: '-0.02em',
+      lineHeight: 1,
+    },
   };
 
   const content = (
     <span
-      className={`font-mono font-bold tracking-tight cursor-pointer select-none transition-all duration-300 group ${sizeClasses[size]} ${className}`}
-      style={{ fontFamily: 'var(--font-space-mono)' }}
+      className={`cursor-pointer select-none transition-opacity duration-200 hover:opacity-80 ${className}`}
+      style={{
+        fontFamily: '-apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+        ...sizeStyles[size],
+      }}
     >
-      <span style={{ color: '#e94560' }}>c</span>
-      <span
-        style={{ color: '#f0efe9' }}
-        className="group-hover:opacity-80 transition-opacity duration-300"
-      >
-        UBER
-      </span>
+      <span style={{ color: '#D97757' }}>c</span>
+      <span style={{ color: '#1A1A1A' }}>UBER</span>
     </span>
   );
 

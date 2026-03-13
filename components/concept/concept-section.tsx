@@ -42,7 +42,7 @@ export function ConceptSection({
       className={`section-fade relative ${visible ? 'visible' : ''}`}
       style={{
         padding: '80px 0',
-        borderBottom: noBorder ? 'none' : '1px solid #2a2a30',
+        borderBottom: noBorder ? 'none' : '1px solid #E5E5E0',
       }}
     >
       {/* Comment icon */}
@@ -50,19 +50,19 @@ export function ConceptSection({
         <button
           onClick={() => onCommentClick(id)}
           className="absolute top-6 right-0 flex items-center gap-1.5 transition-all duration-200 hover:opacity-100 group"
-          style={{ opacity: 0.4 }}
+          style={{ opacity: 0.5 }}
           title={`${commentCount} comment${commentCount !== 1 ? 's' : ''}`}
         >
           <span
-            className="text-xs font-mono"
-            style={{ color: commentCount > 0 ? '#e94560' : '#6b6b74' }}
+            className="text-xs"
+            style={{ color: commentCount > 0 ? '#D97757' : '#9B9B9B' }}
           >
             {commentCount > 0 ? commentCount : ''}
           </span>
           <MessageSquare
             size={16}
-            style={{ color: commentCount > 0 ? '#e94560' : '#6b6b74' }}
-            className="group-hover:text-[#e94560] transition-colors"
+            style={{ color: commentCount > 0 ? '#D97757' : '#9B9B9B' }}
+            className="group-hover:text-[#D97757] transition-colors"
           />
         </button>
       )}
