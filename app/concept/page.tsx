@@ -1,7 +1,8 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { Logo } from '@/components/landing/logo';
 import { ConceptSection } from '@/components/concept/concept-section';
 import { StatCallout } from '@/components/concept/stat-callout';

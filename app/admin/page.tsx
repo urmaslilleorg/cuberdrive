@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect, useCallback } from 'react';
 import { Logo } from '@/components/landing/logo';
 import { Trash2, Plus, Download } from 'lucide-react';
